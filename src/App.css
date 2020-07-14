@@ -24,3 +24,7 @@
   color: #61dafb;
   margin-top: 50px;
 }
+
+a, a:visited, a:hover {
+  color: white;
+}
