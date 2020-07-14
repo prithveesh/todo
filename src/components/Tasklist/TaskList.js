@@ -5,7 +5,6 @@ class TaskList extends Component {
 
     constructor(props) {
         super(props);
-        
         this.state = {
             activated: 1,
         };
@@ -23,19 +22,6 @@ class TaskList extends Component {
 
     async getData() {
         const listOfApisResponse = await fetch("https://swapi.dev/api/");
-        // listOfApisResponse
-        // .then((response) => {
-        //     console.log("response", response);
-        //     const jsonPromise = response.json();
-        //     return jsonPromise;
-        // })
-        // .then(response => {
-        //     console.log(response);
-        // })
-        // .catch(err => {
-        //     console.log(err);
-        // });
-        console.log("promise", listOfApisResponse);
         const listOfApis = await listOfApisResponse.json();
         console.log(listOfApis);
         setTimeout(() => {
@@ -47,9 +33,9 @@ class TaskList extends Component {
     }
 
     activateTask = (id) => {
-        // this.setState({
-        //     activated: id
-        // });
+        this.setState(() => ({
+            activated: id
+        }));
         console.log(id);
     }
 
