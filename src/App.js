@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import logo from './logo.png';
 import TaskList from './components/Tasklist/TaskList';
+import AddTask from './components/AddTask/AddTask';
 import './App.css';
 
 
@@ -12,9 +13,6 @@ class App extends Component {
     this.state = {
       taskListTitle: "This is Task List title"
     }
-  }
-
-  componentDidMount() {
     setTimeout(() => {
       this.setState({
         taskListTitle: "New Title"
@@ -23,8 +21,6 @@ class App extends Component {
   }
 
   render() {
-
-    console.log('render');
 
     const { taskListTitle } = this.state;
 
@@ -35,6 +31,7 @@ class App extends Component {
           <h1>
             Welcome to MakeMyTrip React Training!!!
           </h1>
+          <AddTask />
           <TaskList title={taskListTitle} theme={'red'} />
         </header>
       </div>

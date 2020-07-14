@@ -11,10 +11,46 @@ class TaskList extends Component {
         };
     }
 
-    activateTask = (id) => {
-        this.setState({
-            activated: id
+    componentDidMount() {
+        this.initiateData();
+        console.log('did mount');
+    }
+
+    async initiateData() {
+        await this.getData();
+        console.log("Data Fetched");
+    }
+
+    async getData() {
+        const listOfApisResponse = await fetch("https://swapi.dev/api/");
+        // listOfApisResponse
+        // .then((response) => {
+        //     console.log("response", response);
+        //     const jsonPromise = response.json();
+        //     return jsonPromise;
+        // })
+        // .then(response => {
+        //     console.log(response);
+        // })
+        // .catch(err => {
+        //     console.log(err);
+        // });
+        console.log("promise", listOfApisResponse);
+        const listOfApis = await listOfApisResponse.json();
+        console.log(listOfApis);
+        setTimeout(() => {
+            console.log('timeout');
         });
+        const filmsPromise = await fetch(listOfApis.films);
+        const films = await filmsPromise.json();
+        console.log(films);
+    }
+
+    activateTask = (id) => {
+        // this.setState({
+        //     activated: id
+        // });
+        console.log(id);
     }
 
     handleClick = (event) => {
