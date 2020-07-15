@@ -1,11 +1,15 @@
 import React, { Component } from 'react';
 import './addTask.css';
+import { Context } from '../../store';
 
 // uncontrolled form elements
 // controlled form elements
 // refs
 
 class AddTask extends Component {
+
+    static contextType = Context;
+
     constructor() {
         super();
         this.state = {
@@ -42,16 +46,23 @@ class AddTask extends Component {
         console.log(this.formRef.current);
         console.log(this.formRef.current.taskName);
         console.log(this.formRef.current.taskName.value);
+
+        const { value } = this.formRef.current.taskName;
+        if(value) {
+            const { dispatch } = this.context;
+            dispatch({ type: 'ADD_TASK', payload: value});
+            this.setState({ taskName: ''});
+        }
     }
 
     handleChange = (name, event) => {
         let value = event.target.value;
         // value = value.replace(/e/ig, '10');
-        if(!isNaN(event.target.value)) {
-            this.setState({
-                [name]: value
-            });
-        }
+        // if(!isNaN(event.target.value)) {
+        this.setState({
+            [name]: value
+        });
+        // }
     }
 
     render() {
